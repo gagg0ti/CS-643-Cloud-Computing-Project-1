@@ -1,4 +1,4 @@
-# CS643 Cloud Computing – Project 1 README
+# CS643 Cloud Computing – Project 1
 
 ## Project Overview
 This project implements a distributed image-processing pipeline on AWS using two Amazon EC2 instances, Amazon S3, Amazon SQS, and Amazon Rekognition.
