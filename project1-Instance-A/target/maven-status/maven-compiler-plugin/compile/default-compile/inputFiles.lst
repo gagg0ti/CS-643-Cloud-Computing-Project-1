@@ -1,0 +1,6 @@
+/home/ec2-user/project1/project1/src/main/java/com/project1/app/TextRecognitionApp.java
+/home/ec2-user/project1/project1/src/main/java/com/project1/App.java
+/home/ec2-user/project1/project1/src/main/java/com/project1/aws/RekognitionService.java
+/home/ec2-user/project1/project1/src/main/java/com/project1/aws/SQSService.java
+/home/ec2-user/project1/project1/src/main/java/com/project1/aws/S3Service.java
+/home/ec2-user/project1/project1/src/main/java/com/project1/app/CarRecognitionApp.java
