@@ -34,20 +34,20 @@ This project implements a distributed image-processing pipeline on AWS using two
 
 ---
 
-## Step 2: Create the SQS Queue
+## Step 2: Create the SQS Queue (FIFO)
+
 1. In AWS Console, search for **SQS**.
 2. Open **Simple Queue Service**.
 3. Click **Create queue**.
-4. Select **Standard Queue**.
+4. Select **FIFO Queue**.
 5. Enter queue name:
-   - `project1-queue`
-6. Keep default settings.
-7. Click **Create queue**.
-8. Open the queue and copy the **Queue URL**.
-   - This URL is required in both Java programs.
-
-Optional:
-- Enable long polling by editing the queue and setting **Receive message wait time** to 10 seconds.
+   - `project1-queue.fifo` *(must end with `.fifo`)*
+6. Enable:
+   - ✔ Content-based deduplication (recommended)
+7. Keep other settings as default.
+8. Click **Create queue**.
+9. Open the queue and copy the **Queue URL**.
+   - This URL must be used in both Java programs (EC2-A and EC2-B).
 
 ---
 
@@ -380,5 +380,10 @@ After testing is finished:
 ## Files Submitted for the Project
 - Java source code for Instance A
 - Java source code for Instance B
-- This README file
-- Demo video link
+- README file
+
+## youtube video and github repository links
+- [Demo video link](https://youtu.be/2-ANvdjJFcM)
+- [Github repository Link](https://github.com/gagg0ti/CS-643-Cloud-Computing-Project-1)
+
+

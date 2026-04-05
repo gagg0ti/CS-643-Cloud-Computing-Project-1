@@ -1,0 +1,4 @@
+com/project1/App.class
+com/project1/aws/RekognitionService.class
+com/project1/aws/SQSService.class
+com/project1/app/CarRecognitionApp.class
