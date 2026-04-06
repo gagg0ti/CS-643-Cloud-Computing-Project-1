@@ -49,6 +49,8 @@ This project implements a distributed image-processing pipeline on AWS using two
 9. Open the queue and copy the **Queue URL**.
    - This URL must be used in both Java programs (EC2-A and EC2-B).
 
+-  FIFO queue is used to guarantee strict message ordering, ensuring that the termination message (`-1`) is received only after all image indexes, preventing premature termination of the consumer.
+
 ---
 
 ## Step 3: Launch EC2 Instance A
@@ -71,7 +73,7 @@ This project implements a distributed image-processing pipeline on AWS using two
 ---
 
 ## Step 4: Launch EC2 Instance B
-Repeat the same steps as Instance A, but use use different name:
+Repeat the same steps as Instance A, but use a different name:
 - **Name**: `EC2-B`
 
 Create or select a security group.
@@ -202,7 +204,7 @@ mkdir -p src/main/java/com/project1/aws
 ```
 
 ### Copy project to Instance B
-Either copy the whole project or only the jar file.
+Copy the entire project directory from Instance A to Instance B using `scp`, or recreate the same project structure on Instance B.
 
 ---
 
@@ -264,7 +266,7 @@ Place the application files in these paths:
 
 Both programs must use:
 - bucket name: `cs643-njit-project1`
-- the correct SQS queue URL `https://sqs.us-east-1.amazonaws.com/381492118064/project1-queue`
+- the correct SQS queue URL `https://sqs.us-east-1.amazonaws.com/381492118064/project1-queue.fifo`
 - region: `us-east-1`
 
 ---
@@ -324,9 +326,11 @@ The file should contain only the images that have both:
 Example format:
 
 ```text
-1.jpg -> S BR8167
+1.jpg -> $ BR8167
 3.jpg -> 45, P, 11:50, 85%, PARKING
+4.jpg -> YHI9 OTZ
 7.jpg -> Lamborghini, LP 610 LB
+
 ```
 
 Note:
@@ -346,7 +350,7 @@ The project requires the application to work regardless of which instance starts
 1. Start Instance A first
 2. Start Instance B second
 
-Both scenarios should work successfully.
+This verifies that the system works correctly regardless of startup order, as required by the project guidelines.
 
 ---
 
@@ -358,7 +362,7 @@ If old test messages remain in the queue, purge the queue in AWS Console before 
 Use AWS CLI:
 
 ```bash
-aws sqs receive-message --queue-url "https://sqs.us-east-1.amazonaws.com/381492118064/project1-queue" --max-number-of-messages 1 --wait-time-seconds 5
+aws sqs receive-message --queue-url "https://sqs.us-east-1.amazonaws.com/381492118064/project1-queue.fifo" --max-number-of-messages 1 --wait-time-seconds 5
 ```
 
 ### List objects in S3 bucket
