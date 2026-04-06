@@ -390,4 +390,5 @@ After testing is finished:
 - [Demo video link](https://youtu.be/2-ANvdjJFcM)
 - [Github repository Link](https://github.com/gagg0ti/CS-643-Cloud-Computing-Project-1)
 
-
+## AI copilot Usage ##
+- I did not use any AI Copilot tools. I used ChatGPT step by step to help configure cloud services, generate the required code, and deploy and test each part of the project on the cloud incrementally.
